@@ -1,21 +1,4 @@
-//package com.example.service;
-//
-//import com.example.entity.Employee;
-//
-//import java.util.List;
-//
-//public interface EmployeeService {
-//
-//    public Employee saveEmployee(Employee employee);
-//
-//    public List<Employee> getAll();
-//
-//    public Employee get(long id);
-//
-//    public Employee updateEmployee(long id, Employee employee);
-//
-//    public boolean deleteEmployee(long id);
-//}
+
 package com.example.service;
 
 import com.example.dto.EmployeeDto;

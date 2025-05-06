@@ -34,6 +34,11 @@ public class SignUpServiceImpl implements SignUpService {
         }
 
 
+        if (dto.getMobile().length() != 10) {
+            throw new IllegalArgumentException("Mobile number must be exactly 10 digits");
+        }
+
+
 
         SignUpPage user = new SignUpPage();
         user.setUsername(dto.getUsername());

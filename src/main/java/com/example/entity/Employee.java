@@ -65,7 +65,7 @@ public class Employee {
 
 
     @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be exactly 10 digits")
-    //private String mobileNum;
+
     @Column(name = "Mobilenum")
     private String mobileNum;
 

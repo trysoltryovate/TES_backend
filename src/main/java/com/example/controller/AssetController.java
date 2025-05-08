@@ -2,6 +2,8 @@ package com.example.controller;
 
 import com.example.dto.AssetDto;
 import com.example.entity.Asset;
+import com.example.entity.AssetDelete;
+import com.example.repositry.AssetDeleteRepository;
 import com.example.service.AssetService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import java.util.List;
         @Autowired
        private AssetService assetService;
 
+        @Autowired
+        private AssetDeleteRepository assetDeleteRepository;
 
         @PostMapping("assign-asset")
         public ResponseEntity<String> saveAsset( @Valid @RequestBody AssetDto assetDto) {
@@ -52,6 +56,13 @@ import java.util.List;
         @GetMapping("/getAll")
         public List<Asset> getAllEmploye(){
             return    assetService.findAllDetails();
+        }
+
+
+        @GetMapping("/assetDeleteData")
+        public List<AssetDelete> deleteAssetData(){
+
+            return assetDeleteRepository.findAll();
         }
 
 

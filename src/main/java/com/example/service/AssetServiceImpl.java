@@ -4,20 +4,27 @@ package com.example.service;
 
 import com.example.dto.AssetDto;
 import com.example.entity.Asset;
+import com.example.entity.AssetDelete;
 import com.example.exceptions.MultiFieldValidationException;
 import com.example.exceptions.ResourceNotFoundException;
+import com.example.repositry.AssetDeleteRepository;
 import com.example.repositry.AssetRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssetServiceImpl implements AssetService {
 
     @Autowired
     private AssetRepo assetRepo;
+
+    @Autowired
+    private AssetDeleteRepository assetDeleteRepository;
 
     @Override
     public Asset saveEmploye(AssetDto assetDto) {
@@ -129,10 +136,24 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
-        if (!assetRepo.existsById(id)) {
+
+      Optional<Asset> optionalAsset = assetRepo.findById(id);
+
+//        if (!assetRepo.existsById(id)) {
+//            throw new ResourceNotFoundException("Cannot delete. Asset not found with ID: " + id);
+//        }
+
+        if (!optionalAsset.isPresent()) {
             throw new ResourceNotFoundException("Cannot delete. Asset not found with ID: " + id);
         }
+
+        Asset asset = optionalAsset.get();
+        AssetDelete store = mapDeleteDtoData(asset);
+
+        assetDeleteRepository.save(store);
+
         assetRepo.deleteById(id);
     }
 
@@ -168,6 +189,33 @@ public class AssetServiceImpl implements AssetService {
         entity.setLocation(dto.getLocation());
         entity.setMobileNumber(dto.getMobileNumber());
         return entity;
+    }
+
+
+    private AssetDelete mapDeleteDtoData(Asset asset) {
+
+        AssetDelete assetDelete = new AssetDelete();
+
+        assetDelete.setEmployeeId(asset.getEmployeeId());
+        assetDelete.setEmployeeName(asset.getEmployeeName());
+        assetDelete.setDepartment(asset.getDepartment());
+        assetDelete.setAssignedDate(asset.getAssignedDate());
+        assetDelete.setAssetType(asset.getAssetType());
+        assetDelete.setBag(asset.getBag());
+        assetDelete.setMake(asset.getMake());
+        assetDelete.setModelNumber(asset.getModelNumber());
+        assetDelete.setSerialNumber(asset.getSerialNumber());
+        assetDelete.setIssuedItPersonName(asset.getIssuedItPersonName());
+        assetDelete.setApprovedBy(asset.getApprovedBy());
+        assetDelete.setCharger(asset.getCharger());
+        assetDelete.setChargerWatt(asset.getChargerWatt());
+        assetDelete.setHardDisk(asset.getHardDisk());
+        assetDelete.setProcessor(asset.getProcessor());
+        assetDelete.setRam(asset.getRam());
+        assetDelete.setLocation(asset.getLocation());
+        assetDelete.setMobileNumber(asset.getMobileNumber());
+        return assetDelete;
+
     }
 }
 

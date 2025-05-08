@@ -1,27 +1,24 @@
+
+
 package com.example.service;
-
-
 
 import com.example.dto.AssetDto;
 import com.example.entity.Asset;
 
 import java.util.List;
-import java.util.Optional;
 
-    public interface AssetService {
+public interface AssetService {
 
-        Asset saveEmploye(AssetDto assetDto);
+    Asset saveEmploye(AssetDto assetDto);
 
-        Asset findByID(Long id);
+    Asset findByID(Long id);
 
+    Asset UpdatedEmploye(Long id, AssetDto assetDto);
 
-        Asset UpdatedEmploye(Long id, AssetDto assetDto);
+    void deleteById(Long id);
 
+    List<Asset> findAllDetails();
 
-        void deleteById(Long id);
+    Asset getById(Long id);
 
-        List<Asset> findAllDetails();
-
-    }
-
-
+}

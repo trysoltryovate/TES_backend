@@ -1,12 +1,16 @@
+
 package com.example.repositry;
 
 import com.example.entity.Asset;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-    @Repository
-    public interface AssetRepo extends JpaRepository<Asset,Long> {
+public interface AssetRepo extends JpaRepository<Asset, Long> {
 
-    }
-
+    boolean existsByEmployeeId(Long employeeId);
+    boolean existsBySerialNumber(String serialNumber);
+    boolean existsByMobileNumber(String mobileNumber);
+    boolean existsByModelNumber(String modelNumber);
+    Optional<Asset> findByEmployeeId(Long employeeId);  // Return Optional<Asset> here
+}
 

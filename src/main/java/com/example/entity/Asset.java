@@ -7,33 +7,38 @@ import jakarta.persistence.*;
 
 public class Asset {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name="EmployeeId")
-    private long  employeeId;
 
-    @Column(name="EmployeeName")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name="SNo")
+//    private  long sNo;
+
+    @Id
+    @Column(name = "EmployeeId")
+    private long employeeId;
+
+
+    @Column(name = "EmployeeName")
     private String employeeName;
 
-    @Column(name="Department")
+    @Column(name = "Department")
     private String department;
 
-    @Column(name="AssignedDate")
+    @Column(name = "AssignedDate")
     private String assignedDate;
 
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="AssetId")
-    private long assetId;
+//    @Column(name="AssetId")
+//    private long assetId;
 
 
-    @Column(name="AssetType")
-    private  String assetType;
+    @Column(name = "AssetType")
+    private String assetType;
 
-    @Column(name="Make")
+    @Column(name = "Make")
     private String make;
 
-    @Column(name="Processor")
+    @Column(name = "Processor")
     private String processor;
 
 
@@ -41,30 +46,48 @@ public class Asset {
     private String ram;
 
 
-    @Column(name="HardDisk")
+    @Column(name = "HardDisk")
     private String hardDisk;
 
-    @Column(name="Charger")
+    @Column(name = "Charger")
     private String charger;
 
-    @Column(name="ChargerWatt")
+    @Column(name = "ChargerWatt")
     private String chargerWatt;
 
-    @Column(name="Bag")
+    @Column(name = "Bag")
     private String bag;
 
-    @Column(name="ModelNumber")
+    @Column(name = "ModelNumber")
     private String modelNumber;
 
     @Column(name = "SerialNumber")
     private String serialNumber;
 
 
-    @Column(name="IssuedItPersonName")
+    @Column(name = "IssuedItPersonName")
     private String issuedItPersonName;
 
-    @Column(name="ApprovedBy")
+    @Column(name = "ApprovedBy")
     private String approvedBy;
+
+
+    @Column(name = "Location")
+    private String location;
+
+    @Column(name = "MobileNumber")
+    private String mobileNumber;
+
+
+    private boolean deleted = false;
+
+//    public long getsNo() {
+//        return sNo;
+//    }
+//
+//    public void setsNo(long sNo) {
+//        this.sNo = sNo;
+//    }
 
     public long getEmployeeId() {
         return employeeId;
@@ -98,13 +121,13 @@ public class Asset {
         this.assignedDate = assignedDate;
     }
 
-    public long getAssetId() {
-        return assetId;
-    }
-
-    public void setAssetId(long assetId) {
-        this.assetId = assetId;
-    }
+//    public long getAssetId() {
+//        return assetId;
+//    }
+//
+//    public void setAssetId(long assetId) {
+//        this.assetId = assetId;
+//    }
 
     public String getAssetType() {
         return assetType;
@@ -202,12 +225,37 @@ public class Asset {
         this.approvedBy = approvedBy;
     }
 
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+
     public Asset() {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.department = department;
         this.assignedDate = assignedDate;
-        this.assetId = assetId;
         this.assetType = assetType;
         this.make = make;
         this.processor = processor;
@@ -220,6 +268,9 @@ public class Asset {
         this.serialNumber = serialNumber;
         this.issuedItPersonName = issuedItPersonName;
         this.approvedBy = approvedBy;
+        this.location = location;
+        this.mobileNumber = mobileNumber;
+        this.deleted = deleted;
     }
 
     @Override
@@ -229,7 +280,6 @@ public class Asset {
                 ", employeeName='" + employeeName + '\'' +
                 ", department='" + department + '\'' +
                 ", assignedDate='" + assignedDate + '\'' +
-                ", assetId=" + assetId +
                 ", assetType='" + assetType + '\'' +
                 ", make='" + make + '\'' +
                 ", processor='" + processor + '\'' +
@@ -242,6 +292,9 @@ public class Asset {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", issuedItPersonName='" + issuedItPersonName + '\'' +
                 ", approvedBy='" + approvedBy + '\'' +
+                ", location='" + location + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", deleted=" + deleted +
                 '}';
     }
 }

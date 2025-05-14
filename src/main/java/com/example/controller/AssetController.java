@@ -2,6 +2,8 @@ package com.example.controller;
 
 import com.example.dto.AssetDto;
 import com.example.entity.Asset;
+import com.example.entity.AssetDelete;
+import com.example.repositry.AssetDeleteRepo;
 import com.example.service.AssetService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.List;
 
         @Autowired
        private AssetService assetService;
+        @Autowired
+        private AssetDeleteRepo assetDeleteRepo;
 
 
         @PostMapping("assign-asset")
@@ -55,6 +59,14 @@ import java.util.List;
         }
 
 
+
+        @GetMapping("/assetDeleteData")
+        public List<AssetDelete> deleteAssetData(){
+
+            return assetDeleteRepo.findAll();
+        }
+
+
     }
 
 
@@ -62,3 +74,27 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
